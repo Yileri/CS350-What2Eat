@@ -5,14 +5,15 @@ int main() {
     int people;
     int minPoint = 10;
     int finalCount = 0;
-    int* choices[] = {0, 0, 0, 0, 0}; 
+    int choices[5] = {0, 0, 0, 0, 0}; 
+    char* itemList[5] = {"Kebab", "Hamburger", "Salad", "Lahmacun", "Pizza"};
 
     printf("Please enter the number of people: ");
     scanf("%d", &people);
 
     for (int i = 0; i < people; i++) {
         printf("\n");
-        printf("Person %d, please type the name of items to be the most wanted one in the beginning and least wanted at the end\n", i+1);
+        printf("Person %d, please rank these items from best to worst by typing their names.\n", i+1);
         printf("1. Kebab\n");
         printf("2. Hamburger\n");
         printf("3. Salad\n");
@@ -42,29 +43,47 @@ int main() {
                 j--;
             }
         }
-
     }
 
-    for (int i = 0; i < sizeof(choices); i++) {
+    printf("\n");
+    printf("Finalist for the final round:\n");
+
+    int index = 0;
+    for (int i = 0; i < 5; i++) {
         if (choices[i] >= 10) {
             finalCount ++;
+            printf("%d.", index+1); 
+            printf("%s\n", itemList[index]);
+            index++;
+            
         }
     }
     
     // if none of the points of items are above 10
     if (finalCount == 0) {
-        printf("You are eating at home, decide better next time.");
+        printf("No finalist, you are eating at home. Decide better next time.\n");
         return 0;
     }
 
     int* finalList[finalCount];
 
+/*
     int index = 0;
     for (int i = 0; i < sizeof(choices); i++) {
-        if (choices[i] >= 10) {
+        if (*choices[i] >= 10) {
             finalList[index] = choices[i];
             index++;
         }
+    }
+
+    */
+
+    printf("\n");
+
+    for (int i = 0; i < sizeof(finalList); i++) {
+        printf("Person %d, please rank these items from best to worst by typing their names for final round.\n", i+1);
+            
+    
     }
 
     return 0;
