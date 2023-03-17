@@ -3,6 +3,8 @@
 
 int main() {
     int people;
+    int minPoint = 10;
+    int finalCount = 0;
     int* choices[] = {0, 0, 0, 0, 0}; 
 
     printf("Please enter the number of people: ");
@@ -40,6 +42,30 @@ int main() {
                 j--;
             }
         }
+
     }
+
+    for (int i = 0; i < sizeof(choices); i++) {
+        if (choices[i] >= 10) {
+            finalCount ++;
+        }
+    }
+    
+    // if none of the points of items are above 10
+    if (finalCount == 0) {
+        printf("You are eating at home, decide better next time.");
+        return 0;
+    }
+
+    int* finalList[finalCount];
+
+    int index = 0;
+    for (int i = 0; i < sizeof(choices); i++) {
+        if (choices[i] >= 10) {
+            finalList[index] = choices[i];
+            index++;
+        }
+    }
+
     return 0;
 }
