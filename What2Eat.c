@@ -52,8 +52,9 @@ int main() {
     for (int i = 0; i < 5; i++) {
         if (choices[i] >= 10) {
             finalCount ++;
-            printf("%d.", index+1); 
-            printf("%s\n", itemList[index]);
+            printf("%d. ", index+1); 
+            printf("%s ", itemList[i]);
+            printf("%d Points\n", choices[i]);
             index++;
             
         }
@@ -65,25 +66,49 @@ int main() {
         return 0;
     }
 
-    int* finalList[finalCount];
+    int* finalPoint[finalCount];
+    char* finalList[finalCount];
 
-/*
-    int index = 0;
-    for (int i = 0; i < sizeof(choices); i++) {
-        if (*choices[i] >= 10) {
-            finalList[index] = choices[i];
-            index++;
+    index = 0;
+    for (int i = 0; i < 5; i++) {
+        if (choices[i] >= 10) {
+            finalList[index] = itemList[i];
+            index ++;
         }
     }
 
-    */
+    if (finalCount == 1) {
+        printf("\n");
+        printf("You are ordering %s!", finalList[0]);
+        printf("\n");
+        return 0;
+    }
 
     printf("\n");
 
-    for (int i = 0; i < sizeof(finalList); i++) {
+    // round 2
+    for (int i = 0; i < people; i++) {
         printf("Person %d, please rank these items from best to worst by typing their names for final round.\n", i+1);
-            
-    
+        for (int j = 0; j < finalCount; j++) {
+            printf("%s\n", finalList[j]);
+        }
+
+        for (int j = 0; j < finalCount; j++) {
+            char item[20];
+            printf("Choice number %d: ", j+1);
+            scanf("%s", item);
+
+            for (int k = 0; k < finalCount; k++) {
+                if (!strcmp(item, finalList[k])) {
+                    finalPoint[k] += finalCount-j;
+                } else {
+                    printf("\n");
+                    printf("Invalid item, please type an item from the list\n");
+                    printf("\n");
+                    j--;
+                }
+            }
+        }
     }
 
     return 0;
